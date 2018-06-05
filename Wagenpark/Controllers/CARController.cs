@@ -48,7 +48,10 @@ namespace Wagenpark.Controllers
         // GET: CAR/Create
         public ActionResult Create()
         {
-            ViewBag.DealerNr = new SelectList(db.DEALER, "DealerNr", "Naam");
+            if(User.IsInRole("Admin"))
+                ViewBag.DealerNr = new SelectList(db.DEALER, "DealerNr", "Naam");
+            else
+                ViewBag.DealerNr = new SelectList(db.DEALER.Where(d => d.Naam == this.User.Identity.Name), "DealerNr", "Naam");
             return View();
         }
 
@@ -65,8 +68,7 @@ namespace Wagenpark.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.DealerNr = new SelectList(db.DEALER, "DealerNr", "Naam", cAR.DealerNr);
+            ViewBag.DealerNr = new SelectList(db.DEALER, "DealerNr", "Naam");
             return View(cAR);
         }
 
