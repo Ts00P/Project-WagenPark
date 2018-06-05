@@ -26,7 +26,7 @@
             <PropertyRef Name="OnderhoudsDatum" />
           </Key>
           <Property Name="OnderhoudsDatum" Type="date" Nullable="false" />
-          <Property Name="Kosten" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Kosten" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Kenteken" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="WerkplaatsNr" Type="int" Nullable="false" />
         </EntityType>
@@ -120,7 +120,7 @@
             <PropertyRef Name="OnderhoudsDatum" />
           </Key>
           <Property Name="OnderhoudsDatum" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Kosten" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Kosten" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Kenteken" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WerkplaatsNr" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CAR" Relationship="Self.FK__ONDERHOUD__Kente__2A4B4B5E" FromRole="ONDERHOUD" ToRole="CAR" />

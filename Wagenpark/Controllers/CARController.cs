@@ -25,7 +25,7 @@ namespace Wagenpark.Controllers
             }
             else
             {
-                var cAR = db.CAR.Include(c => c.DEALER).Where(c => c.DEALER.Naam == this.User.Identity.Name);
+                var cAR = db.CAR.Include(c => c.DEALER).Where(c => c.DEALER.Naam == User.Identity.Name);
                 return View(cAR.ToList());
             }
         }
@@ -49,9 +49,13 @@ namespace Wagenpark.Controllers
         public ActionResult Create()
         {
             if(User.IsInRole("Admin"))
+            {
                 ViewBag.DealerNr = new SelectList(db.DEALER, "DealerNr", "Naam");
-            else
-                ViewBag.DealerNr = new SelectList(db.DEALER.Where(d => d.Naam == this.User.Identity.Name), "DealerNr", "Naam");
+            }
+            else 
+            {
+                ViewBag.DealerNr = new SelectList(db.DEALER.Where(d => d.Naam == User.Identity.Name), "DealerNr", "Naam");
+            }
             return View();
         }
 

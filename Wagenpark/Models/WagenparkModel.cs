@@ -47,7 +47,7 @@ namespace Wagenpark.Models
 
             modelBuilder.Entity<ONDERHOUD>()
                 .Property(e => e.Kosten)
-                .HasPrecision(4, 2);
+                .HasPrecision(18, 4);
 
             modelBuilder.Entity<ONDERHOUD>()
                 .Property(e => e.Kenteken)

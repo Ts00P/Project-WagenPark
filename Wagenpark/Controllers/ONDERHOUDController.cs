@@ -18,8 +18,16 @@ namespace Wagenpark.Controllers
         // GET: ONDERHOUDs
         public ActionResult Index()
         {
-            var oNDERHOUD = db.ONDERHOUD.Include(o => o.CAR).Include(o => o.WERKPLAATS);
-            return View(oNDERHOUD.ToList());
+            if (this.User.IsInRole("Admin"))
+            {
+                var oNDERHOUD = db.ONDERHOUD.Include(o => o.CAR).Include(o => o.WERKPLAATS);
+                return View(oNDERHOUD.ToList());
+            }
+            else
+            {
+                var oNDERHOUD = db.ONDERHOUD.Include(o => o.CAR).Include(o => o.WERKPLAATS).Where(o => o.CAR.DEALER.Naam == User.Identity.Name);
+                return View(oNDERHOUD.ToList());
+            }
         }
 
         // GET: ONDERHOUDs/Details/5
@@ -40,7 +48,15 @@ namespace Wagenpark.Controllers
         // GET: ONDERHOUDs/Create
         public ActionResult Create()
         {
-            ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Merk");
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Kenteken");
+            }
+            else
+            {
+                ViewBag.Kenteken = new SelectList(db.CAR.Where(c => c.DEALER.Naam == User.Identity.Name), "Kenteken", "Kenteken");
+                //ViewBag.DealerNr = new SelectList(db.DEALER.Where(d => d.Naam == User.Identity.Name), "DealerNr", "Naam");
+            }
             ViewBag.WerkplaatsNr = new SelectList(db.WERKPLAATS, "WerkplaatsNr", "Naam");
             return View();
         }
@@ -59,7 +75,7 @@ namespace Wagenpark.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Merk", oNDERHOUD.Kenteken);
+            ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Kenteken", oNDERHOUD.Kenteken);
             ViewBag.WerkplaatsNr = new SelectList(db.WERKPLAATS, "WerkplaatsNr", "Naam", oNDERHOUD.WerkplaatsNr);
             return View(oNDERHOUD);
         }
@@ -76,7 +92,7 @@ namespace Wagenpark.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Merk", oNDERHOUD.Kenteken);
+            ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Kenteken", oNDERHOUD.Kenteken);
             ViewBag.WerkplaatsNr = new SelectList(db.WERKPLAATS, "WerkplaatsNr", "Naam", oNDERHOUD.WerkplaatsNr);
             return View(oNDERHOUD);
         }

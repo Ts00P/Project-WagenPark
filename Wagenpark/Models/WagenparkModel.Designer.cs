@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\School\Leerjaar2\Backend\1. Project Wagenpark\Wagenpark\Wagenpark\Models\WagenparkModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\School\Leerjaar2\Backend\1. Project Wagenpark\Project-Wagenpark\Wagenpark\Models\WagenparkModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
