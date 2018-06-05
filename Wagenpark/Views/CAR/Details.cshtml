@@ -1,0 +1,42 @@
+﻿@model Wagenpark.Models.CAR
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CAR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Merk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Merk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AutoType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AutoType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEALER.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEALER.Naam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Kenteken }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

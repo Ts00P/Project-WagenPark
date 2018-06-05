@@ -1,0 +1,135 @@
+﻿@model Wagenpark.Models.WagenparkDBEntities
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Auto's</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Kenteken
+        </th>
+        <th>
+            Merk
+        </th>
+        <th>
+            Auto type
+        </th>
+        <th>
+            Dealer naam
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.CAR)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kenteken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEALER.Naam)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Kenteken }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Kenteken }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Kenteken })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<h2>Dealers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.DEALER)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DealerNr }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DealerNr }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DealerNr })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+<h2>Onderhoudsbeurten</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Onderhoudsdatum
+        </th>
+        <th>
+            Auto Merk
+        </th>
+        <th>
+            Autotype
+        </th>
+        <th>
+            Kenteken
+        </th>
+        <th>
+            Naam Werkplaats
+        </th>
+        <th>
+            Kosten
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ONDERHOUD)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.Merk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.AutoType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.Kenteken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WERKPLAATS.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kosten)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OnderhoudsDatum }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OnderhoudsDatum }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OnderhoudsDatum })
+        </td>
+    </tr>
+    }
+
+</table>

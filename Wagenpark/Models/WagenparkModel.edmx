@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WagenparkDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAR">
+          <Key>
+            <PropertyRef Name="Kenteken" />
+          </Key>
+          <Property Name="Kenteken" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Merk" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AutoType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DealerNr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEALER">
+          <Key>
+            <PropertyRef Name="DealerNr" />
+          </Key>
+          <Property Name="DealerNr" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ONDERHOUD">
+          <Key>
+            <PropertyRef Name="OnderhoudsDatum" />
+          </Key>
+          <Property Name="OnderhoudsDatum" Type="date" Nullable="false" />
+          <Property Name="Kosten" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Kenteken" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="WerkplaatsNr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WERKPLAATS">
+          <Key>
+            <PropertyRef Name="WerkplaatsNr" />
+          </Key>
+          <Property Name="WerkplaatsNr" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CAR__DealerNr__25869641">
+          <End Role="DEALER" Type="Self.DEALER" Multiplicity="1" />
+          <End Role="CAR" Type="Self.CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEALER">
+              <PropertyRef Name="DealerNr" />
+            </Principal>
+            <Dependent Role="CAR">
+              <PropertyRef Name="DealerNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ONDERHOUD__Kente__2A4B4B5E">
+          <End Role="CAR" Type="Self.CAR" Multiplicity="1" />
+          <End Role="ONDERHOUD" Type="Self.ONDERHOUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAR">
+              <PropertyRef Name="Kenteken" />
+            </Principal>
+            <Dependent Role="ONDERHOUD">
+              <PropertyRef Name="Kenteken" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ONDERHOUD__Werkp__2B3F6F97">
+          <End Role="WERKPLAATS" Type="Self.WERKPLAATS" Multiplicity="1" />
+          <End Role="ONDERHOUD" Type="Self.ONDERHOUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WERKPLAATS">
+              <PropertyRef Name="WerkplaatsNr" />
+            </Principal>
+            <Dependent Role="ONDERHOUD">
+              <PropertyRef Name="WerkplaatsNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WagenparkDBModelStoreContainer">
+          <EntitySet Name="CAR" EntityType="Self.CAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEALER" EntityType="Self.DEALER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ONDERHOUD" EntityType="Self.ONDERHOUD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WERKPLAATS" EntityType="Self.WERKPLAATS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CAR__DealerNr__25869641" Association="Self.FK__CAR__DealerNr__25869641">
+            <End Role="DEALER" EntitySet="DEALER" />
+            <End Role="CAR" EntitySet="CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ONDERHOUD__Kente__2A4B4B5E" Association="Self.FK__ONDERHOUD__Kente__2A4B4B5E">
+            <End Role="CAR" EntitySet="CAR" />
+            <End Role="ONDERHOUD" EntitySet="ONDERHOUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ONDERHOUD__Werkp__2B3F6F97" Association="Self.FK__ONDERHOUD__Werkp__2B3F6F97">
+            <End Role="WERKPLAATS" EntitySet="WERKPLAATS" />
+            <End Role="ONDERHOUD" EntitySet="ONDERHOUD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WagenparkDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAR">
+          <Key>
+            <PropertyRef Name="Kenteken" />
+          </Key>
+          <Property Name="Kenteken" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Merk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AutoType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DealerNr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DEALER" Relationship="Self.FK__CAR__DealerNr__25869641" FromRole="CAR" ToRole="DEALER" />
+          <NavigationProperty Name="ONDERHOUD" Relationship="Self.FK__ONDERHOUD__Kente__2A4B4B5E" FromRole="CAR" ToRole="ONDERHOUD" />
+        </EntityType>
+        <EntityType Name="DEALER">
+          <Key>
+            <PropertyRef Name="DealerNr" />
+          </Key>
+          <Property Name="DealerNr" Type="Int32" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAR" Relationship="Self.FK__CAR__DealerNr__25869641" FromRole="DEALER" ToRole="CAR" />
+        </EntityType>
+        <EntityType Name="ONDERHOUD">
+          <Key>
+            <PropertyRef Name="OnderhoudsDatum" />
+          </Key>
+          <Property Name="OnderhoudsDatum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Kosten" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Kenteken" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WerkplaatsNr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CAR" Relationship="Self.FK__ONDERHOUD__Kente__2A4B4B5E" FromRole="ONDERHOUD" ToRole="CAR" />
+          <NavigationProperty Name="WERKPLAATS" Relationship="Self.FK__ONDERHOUD__Werkp__2B3F6F97" FromRole="ONDERHOUD" ToRole="WERKPLAATS" />
+        </EntityType>
+        <EntityType Name="WERKPLAATS">
+          <Key>
+            <PropertyRef Name="WerkplaatsNr" />
+          </Key>
+          <Property Name="WerkplaatsNr" Type="Int32" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ONDERHOUD" Relationship="Self.FK__ONDERHOUD__Werkp__2B3F6F97" FromRole="WERKPLAATS" ToRole="ONDERHOUD" />
+        </EntityType>
+        <Association Name="FK__CAR__DealerNr__25869641">
+          <End Role="DEALER" Type="Self.DEALER" Multiplicity="1" />
+          <End Role="CAR" Type="Self.CAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEALER">
+              <PropertyRef Name="DealerNr" />
+            </Principal>
+            <Dependent Role="CAR">
+              <PropertyRef Name="DealerNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ONDERHOUD__Kente__2A4B4B5E">
+          <End Role="CAR" Type="Self.CAR" Multiplicity="1" />
+          <End Role="ONDERHOUD" Type="Self.ONDERHOUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAR">
+              <PropertyRef Name="Kenteken" />
+            </Principal>
+            <Dependent Role="ONDERHOUD">
+              <PropertyRef Name="Kenteken" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ONDERHOUD__Werkp__2B3F6F97">
+          <End Role="WERKPLAATS" Type="Self.WERKPLAATS" Multiplicity="1" />
+          <End Role="ONDERHOUD" Type="Self.ONDERHOUD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WERKPLAATS">
+              <PropertyRef Name="WerkplaatsNr" />
+            </Principal>
+            <Dependent Role="ONDERHOUD">
+              <PropertyRef Name="WerkplaatsNr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WagenparkDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAR" EntityType="Self.CAR" />
+          <EntitySet Name="DEALER" EntityType="Self.DEALER" />
+          <EntitySet Name="ONDERHOUD" EntityType="Self.ONDERHOUD" />
+          <EntitySet Name="WERKPLAATS" EntityType="Self.WERKPLAATS" />
+          <AssociationSet Name="FK__CAR__DealerNr__25869641" Association="Self.FK__CAR__DealerNr__25869641">
+            <End Role="DEALER" EntitySet="DEALER" />
+            <End Role="CAR" EntitySet="CAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ONDERHOUD__Kente__2A4B4B5E" Association="Self.FK__ONDERHOUD__Kente__2A4B4B5E">
+            <End Role="CAR" EntitySet="CAR" />
+            <End Role="ONDERHOUD" EntitySet="ONDERHOUD" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ONDERHOUD__Werkp__2B3F6F97" Association="Self.FK__ONDERHOUD__Werkp__2B3F6F97">
+            <End Role="WERKPLAATS" EntitySet="WERKPLAATS" />
+            <End Role="ONDERHOUD" EntitySet="ONDERHOUD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WagenparkDBModelStoreContainer" CdmEntityContainer="WagenparkDBEntities">
+          <EntitySetMapping Name="CAR">
+            <EntityTypeMapping TypeName="WagenparkDBModel.CAR">
+              <MappingFragment StoreEntitySet="CAR">
+                <ScalarProperty Name="Kenteken" ColumnName="Kenteken" />
+                <ScalarProperty Name="Merk" ColumnName="Merk" />
+                <ScalarProperty Name="AutoType" ColumnName="AutoType" />
+                <ScalarProperty Name="DealerNr" ColumnName="DealerNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEALER">
+            <EntityTypeMapping TypeName="WagenparkDBModel.DEALER">
+              <MappingFragment StoreEntitySet="DEALER">
+                <ScalarProperty Name="DealerNr" ColumnName="DealerNr" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ONDERHOUD">
+            <EntityTypeMapping TypeName="WagenparkDBModel.ONDERHOUD">
+              <MappingFragment StoreEntitySet="ONDERHOUD">
+                <ScalarProperty Name="OnderhoudsDatum" ColumnName="OnderhoudsDatum" />
+                <ScalarProperty Name="Kosten" ColumnName="Kosten" />
+                <ScalarProperty Name="Kenteken" ColumnName="Kenteken" />
+                <ScalarProperty Name="WerkplaatsNr" ColumnName="WerkplaatsNr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WERKPLAATS">
+            <EntityTypeMapping TypeName="WagenparkDBModel.WERKPLAATS">
+              <MappingFragment StoreEntitySet="WERKPLAATS">
+                <ScalarProperty Name="WerkplaatsNr" ColumnName="WerkplaatsNr" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
