@@ -68,7 +68,9 @@ namespace Wagenpark.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OnderhoudsDatum,Kosten,Kenteken,WerkplaatsNr")] ONDERHOUD oNDERHOUD)
         {
-            if (ModelState.IsValid)
+            int oudOnderhoudsDatum = db.ONDERHOUD.Where(o => o.OnderhoudsDatum == oNDERHOUD.OnderhoudsDatum).Count();
+
+            if (ModelState.IsValid && oudOnderhoudsDatum <= 0)
             {
                 db.ONDERHOUD.Add(oNDERHOUD);
                 db.SaveChanges();

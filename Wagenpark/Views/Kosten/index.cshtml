@@ -34,7 +34,7 @@
             kosten += item.Kosten;
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+                    @string.Format("{0:dd-MM-yyyy}", item.OnderhoudsDatum)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CAR.Kenteken)
@@ -46,7 +46,7 @@
                     @Html.DisplayFor(modelItem => item.CAR.AutoType)
                 </td>
                 <td>
-                    €@Html.DisplayFor(modelItem => item.Kosten)
+                    @string.Format("{0:C}", item.Kosten)
                 </td>
                 <td>
                 </td>
@@ -60,7 +60,7 @@
             <td></td>
             <td></td>
             <td>
-                €@kosten.ToString("N")
+                € @kosten.ToString("N")
             </td>
             <td></td>
         </tr>
