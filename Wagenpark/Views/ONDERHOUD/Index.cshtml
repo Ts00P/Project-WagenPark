@@ -35,10 +35,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+            @string.Format("{0:dd-MM-yyyy}", item.OnderhoudsDatum)
         </td>
         <td>
-            €@Html.DisplayFor(modelItem => item.Kosten)
+            @string.Format("{0:C}", item.Kosten)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CAR.Kenteken)

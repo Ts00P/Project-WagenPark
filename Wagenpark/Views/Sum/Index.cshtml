@@ -20,7 +20,6 @@
         <th>
             Naam dealer
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model.CAR)
@@ -37,11 +36,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DEALER.Naam)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Kenteken }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Kenteken }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Kenteken })
             </td>
         </tr>
     }
@@ -94,18 +88,16 @@
         <th>
             Naam werkplaats
         </th>
-
-        <th></th>
     </tr>
 
     @foreach (var item in Model.ONDERHOUD)
     {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+            @string.Format("{0:dd-MM-yyyy}", item.OnderhoudsDatum)
         </td>
         <td>
-            €@Html.DisplayFor(modelItem => item.Kosten)
+            @string.Format("{0:C}", item.Kosten)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CAR.Kenteken)
@@ -118,11 +110,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WERKPLAATS.Naam)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OnderhoudsDatum }) |
-            @Html.ActionLink("Details", "Details", new { id = item.OnderhoudsDatum }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.OnderhoudsDatum })
         </td>
     </tr>
     }
