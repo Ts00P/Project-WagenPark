@@ -241,8 +241,11 @@
     <Content Include="App_Data\WagenparkDB_log.ldf">
       <DependentUpon>WagenparkDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-lux.css" />
+    <Content Include="Images\audi.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
