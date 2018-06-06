@@ -195,6 +195,7 @@
     <Compile Include="Controllers\CARController.cs" />
     <Compile Include="Controllers\DEALERController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KostenController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ONDERHOUDController.cs" />
     <Compile Include="Controllers\SumController.cs" />
@@ -338,6 +339,7 @@
     <Content Include="Views\Shared\_LayoutDealer.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Sum\Index.cshtml" />
+    <Content Include="Views\Kosten\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Wagenpark\" />

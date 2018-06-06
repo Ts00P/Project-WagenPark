@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Onderhoudsbeurten</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,10 +18,16 @@
             @Html.DisplayNameFor(model => model.Kosten)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CAR.Kenteken)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CAR.Merk)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WERKPLAATS.Naam)
+            @Html.DisplayNameFor(model => model.CAR.AutoType)
+        </th>
+        <th>
+            Werkplaats
         </th>
         <th></th>
     </tr>
@@ -32,10 +38,16 @@
             @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Kosten)
+            €@Html.DisplayFor(modelItem => item.Kosten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.Kenteken)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CAR.Merk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.AutoType)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WERKPLAATS.Naam)

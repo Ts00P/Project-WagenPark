@@ -18,7 +18,7 @@
             Auto type
         </th>
         <th>
-            Dealer naam
+            Naam dealer
         </th>
         <th></th>
     </tr>
@@ -57,7 +57,6 @@
         <th>
             Naam
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model.DEALER)
@@ -65,11 +64,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Naam)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DealerNr }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DealerNr }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.DealerNr })
             </td>
         </tr>
     }
@@ -86,48 +80,71 @@
             Onderhoudsdatum
         </th>
         <th>
-            Auto Merk
-        </th>
-        <th>
-            Autotype
+            Kosten
         </th>
         <th>
             Kenteken
         </th>
         <th>
-            Naam Werkplaats
+            Merk auto
         </th>
         <th>
-            Kosten
+            Autotype
         </th>
+        <th>
+            Naam werkplaats
+        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model.ONDERHOUD)
     {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+        </td>
+        <td>
+            €@Html.DisplayFor(modelItem => item.Kosten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.Kenteken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.Merk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAR.AutoType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WERKPLAATS.Naam)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OnderhoudsDatum }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OnderhoudsDatum }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OnderhoudsDatum })
+        </td>
+    </tr>
+    }
+
+</table>
+
+<br />
+
+<h2>Werkplaatsen</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+    </tr>
+
+    @foreach (var item in Model.WERKPLAATS)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CAR.Merk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CAR.AutoType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CAR.Kenteken)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WERKPLAATS.Naam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kosten)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OnderhoudsDatum }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OnderhoudsDatum }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OnderhoudsDatum })
+                @Html.DisplayFor(modelItem => item.Naam)
             </td>
         </tr>
     }
