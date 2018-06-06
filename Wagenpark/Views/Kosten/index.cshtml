@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Wagenpark.Models.ONDERHOUD>
+
+    @{
+        ViewBag.Title = "index";
+        decimal kosten = 0;
+    }
+
+    <h2>Kostenoverzicht</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                Onderhoudsdatum
+            </th>
+            <th>
+                Kenteken
+            </th>
+            <th>
+                Merk
+            </th>
+            <th>
+                Auto type
+            </th>
+            <th>
+                Kosten
+            </th>
+            <th>
+                Totale kosten
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            kosten += item.Kosten;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnderhoudsDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CAR.Kenteken)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CAR.Merk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CAR.AutoType)
+                </td>
+                <td>
+                    €@Html.DisplayFor(modelItem => item.Kosten)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                €@kosten.ToString("N")
+            </td>
+            <td></td>
+        </tr>
+
+    </table>
