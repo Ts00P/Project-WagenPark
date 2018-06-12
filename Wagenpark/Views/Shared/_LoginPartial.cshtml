@@ -1,22 +1,23 @@
-﻿@using Microsoft.AspNet.Identity
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage", @class = "nav-link"})
-        </li>
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+    </li>
+    <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-door-closed"></i> Log off</a></li>
+</ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" href="@Url.Action("Register", "Account")">Register</a></li>
-        <li><a class="nav-link" href="@Url.Action("Login", "Account")">Log in</a></li>
+        <li><a class="nav-link" href="@Url.Action("Register", "Account")"><i class="fas fa-user-plus"></i> Register</a></li>
+        <li><a class="nav-link" href="@Url.Action("Login", "Account")"><i class="fas fa-door-open"></i> Log in</a></li>
     </ul>
 }

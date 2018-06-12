@@ -4,9 +4,9 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Verwijderen</h2>
+<h2>Gebruikstatus</h2>
 
-<h3>Weet u zeker dat u deze auto wilt verwijderen?</h3>
+<h3>Weet u zeker dat u de gebruikstatus wilt veranderen?</h3>
 <div>
     <h4>Auto</h4>
     <hr />
@@ -41,9 +41,8 @@
     {
         @Html.AntiForgeryToken()
 
-        <p style="color:red;">Als het niet lukt om de auto te verwijderen, dan heeft deze nog een onderhoudsbeurt open staan.</p>
         <div class="form-actions no-color">
-            <input type="submit" value="Verwijder" class="btn btn-default" /> |
+            <input type="submit" value="Verander" class="btn btn-default" /> |
             @Html.ActionLink("Terug", "Index")
         </div>
     }

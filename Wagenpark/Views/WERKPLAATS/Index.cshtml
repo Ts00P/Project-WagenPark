@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<Wagenpark.Models.WERKPLAATS>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ROCIT";
 }
 
-<h2>Werkplaatsen</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Werkplaatsen</h2>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <div style="border-style: solid; border-width: 2px; width: 185px; border-radius:5px; border-color: #919aa1; background-color:#919aa1;">
+        <a href="@Url.Action("Create")"><i class="fas fa-plus-square" style="font-size: 16px; color: #fff;"></i></a>
+        @Html.ActionLink("Werkplaats toevoegen", "Create", null, new { @style = "color: white;" })</div>
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -23,11 +30,18 @@
             @Html.DisplayFor(modelItem => item.Naam)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WerkplaatsNr }) |
-            @Html.ActionLink("Details", "Details", new { id=item.WerkplaatsNr }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.WerkplaatsNr })
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("Edit", new { id = item.WerkplaatsNr })"><i class="fas fa-edit" style="font-size: 20px; color: #919aa1;"> | </i></a>
+                <a href="@Url.Action("Details", new { id = item.WerkplaatsNr })"><i class="fas fa-info-circle" style="font-size: 20px; color: #919aa1;"> | </i></a>
+                <a href="@Url.Action("Delete", new { id = item.WerkplaatsNr })"><i class="fas fa-trash-alt" style="font-size: 20px; color: #919aa1;"></i></a>
+            }
+            else
+            {
+                <a href="@Url.Action("Details", new { id = item.WerkplaatsNr })"><i class="fas fa-info-circle" style="font-size: 20px; color: #919aa1;"></i></a>
+            }
         </td>
-    </tr>
-}
+        </tr>
+    }
 
-</table>
+    </table>

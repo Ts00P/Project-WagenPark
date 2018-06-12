@@ -343,6 +343,8 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Sum\Index.cshtml" />
     <Content Include="Views\Kosten\index.cshtml" />
+    <Content Include="Views\CAR\Change.cshtml" />
+    <Content Include="Views\ONDERHOUD\Change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Wagenpark\" />

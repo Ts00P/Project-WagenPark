@@ -1,11 +1,12 @@
 ﻿@model Wagenpark.Models.ONDERHOUD
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
+<h2>Betaalstatus</h2>
 
+<h3>Weet u zeker dat u de betaalstatus wilt veranderen?</h3>
 <div>
     <h4>ONDERHOUD</h4>
     <hr />
@@ -35,8 +36,14 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Verander" class="btn btn-default" /> |
+            @Html.ActionLink("Terug", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Wijzig", "Edit", new { id = Model.OnderhoudsDatum.ToString("MM-dd-yyyy") }) |
-    @Html.ActionLink("Terug", "Index")
-</p>

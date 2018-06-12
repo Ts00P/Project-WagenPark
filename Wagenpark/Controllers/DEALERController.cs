@@ -134,7 +134,14 @@ namespace Wagenpark.Controllers
             }
 
             db.DEALER.Remove(dEALER);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception err)
+            {
+                ModelState.AddModelError("error", err.Message);
+            }
             return RedirectToAction("Index");
         }
 

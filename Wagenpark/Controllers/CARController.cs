@@ -68,6 +68,7 @@ namespace Wagenpark.Controllers
         {
             if (ModelState.IsValid)
             {
+                cAR.InUse = 1;
                 db.CAR.Add(cAR);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,6 +111,36 @@ namespace Wagenpark.Controllers
         }
 
         // GET: CAR/Delete/5
+        public ActionResult Change(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CAR cAR = db.CAR.Find(id);
+            if (cAR == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cAR);
+        }
+
+        // POST: CAR/Delete/5
+        [HttpPost, ActionName("Change")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeConfirmed(string id)
+        {
+            CAR cAR = db.CAR.Find(id);
+            if(cAR.InUse == 1)
+                cAR.InUse = 0;
+            else
+                cAR.InUse = 1;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: CAR/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -127,11 +158,19 @@ namespace Wagenpark.Controllers
         // POST: CAR/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             CAR cAR = db.CAR.Find(id);
             db.CAR.Remove(cAR);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception err)
+            {
+                ModelState.AddModelError("error", err.Message);
+            }
             return RedirectToAction("Index");
         }
 

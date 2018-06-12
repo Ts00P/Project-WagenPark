@@ -50,12 +50,11 @@ namespace Wagenpark.Controllers
         {
             if (User.IsInRole("Admin"))
             {
-                ViewBag.Kenteken = new SelectList(db.CAR, "Kenteken", "Kenteken");
+                ViewBag.Kenteken = new SelectList(db.CAR.Where(c => c.InUse == 1), "Kenteken", "Kenteken");
             }
             else
             {
-                ViewBag.Kenteken = new SelectList(db.CAR.Where(c => c.DEALER.Naam == User.Identity.Name), "Kenteken", "Kenteken");
-                //ViewBag.DealerNr = new SelectList(db.DEALER.Where(d => d.Naam == User.Identity.Name), "DealerNr", "Naam");
+                ViewBag.Kenteken = new SelectList(db.CAR.Where(c => c.DEALER.Naam == User.Identity.Name).Where(c => c.InUse == 1), "Kenteken", "Kenteken");
             }
             ViewBag.WerkplaatsNr = new SelectList(db.WERKPLAATS, "WerkplaatsNr", "Naam");
             return View();
@@ -118,6 +117,37 @@ namespace Wagenpark.Controllers
         }
 
         // GET: ONDERHOUDs/Delete/5
+        public ActionResult Change(DateTime id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ONDERHOUD oNDERHOUD = db.ONDERHOUD.Find(id);
+            if (oNDERHOUD == null)
+            {
+                return HttpNotFound();
+            }
+            return View(oNDERHOUD);
+        }
+
+        // POST: ONDERHOUDs/Delete/5
+        [HttpPost, ActionName("Change")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeConfirmed(DateTime id)
+        {
+            ONDERHOUD oNDERHOUD = db.ONDERHOUD.Find(id);
+            //db.ONDERHOUD.Remove(oNDERHOUD);
+            if (oNDERHOUD.Paid == 1)
+                oNDERHOUD.Paid = 0;
+            else
+                oNDERHOUD.Paid = 1;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: ONDERHOUDs/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(DateTime id)
         {
             if (id == null)
@@ -135,6 +165,7 @@ namespace Wagenpark.Controllers
         // POST: ONDERHOUDs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(DateTime id)
         {
             ONDERHOUD oNDERHOUD = db.ONDERHOUD.Find(id);

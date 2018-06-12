@@ -18,7 +18,8 @@ namespace Wagenpark.Models
         public decimal Kosten { get; set; }
         public string Kenteken { get; set; }
         public int WerkplaatsNr { get; set; }
-    
+        public int Paid { get; set; }
+
         public virtual CAR CAR { get; set; }
         public virtual WERKPLAATS WERKPLAATS { get; set; }
     }

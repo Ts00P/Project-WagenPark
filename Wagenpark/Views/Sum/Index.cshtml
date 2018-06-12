@@ -1,13 +1,17 @@
 ﻿@model Wagenpark.Models.WagenparkDBEntities
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ROCIT";
 }
-
-<h2>Auto's</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Auto's</h2>
+</div>
 
 <table class="table">
     <tr>
+        <th>
+            In gebruik
+        </th>
         <th>
             Kenteken
         </th>
@@ -15,7 +19,7 @@
             Merk
         </th>
         <th>
-            Auto type
+            Autotype
         </th>
         <th>
             Naam dealer
@@ -24,27 +28,39 @@
 
     @foreach (var item in Model.CAR)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kenteken)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Merk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AutoType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DEALER.Naam)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @if (item.InUse == 1)
+            {
+                <i class="fas fa-check" style="font-size: 20px; color: yellowgreen;"></i>
+            }
+            else
+            {
+                <i class="fas fa-times-circle" style="font-size: 20px; color: red;"></i>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kenteken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Merk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEALER.Naam)
+        </td>
+    </tr>
     }
 
 </table>
 
 <br />
 
-<h2>Dealers</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Dealers</h2>
+</div>
 
 <table class="table">
     <tr>
@@ -66,10 +82,15 @@
 
 <br />
 
-<h2>Onderhoudsbeurten</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Onderhoudsbeurten</h2>
+</div>
 
 <table class="table">
     <tr>
+        <th>
+            Betaald
+        </th>
         <th>
             Onderhoudsdatum
         </th>
@@ -93,6 +114,16 @@
     @foreach (var item in Model.ONDERHOUD)
     {
     <tr>
+        <td>
+            @if (item.Paid == 1)
+            {
+                <i class="fas fa-check" style="font-size: 20px; color: yellowgreen;"></i>
+            }
+            else
+            {
+                <i class="fas fa-times-circle" style="font-size: 20px; color: red;"></i>
+            }
+        </td>
         <td>
             @string.Format("{0:dd-MM-yyyy}", item.OnderhoudsDatum)
         </td>
@@ -118,7 +149,9 @@
 
 <br />
 
-<h2>Werkplaatsen</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Werkplaatsen</h2>
+</div>
 
 <table class="table">
     <tr>

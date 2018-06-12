@@ -13,6 +13,7 @@
           <Property Name="Merk" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="AutoType" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DealerNr" Type="int" Nullable="false" />
+          <Property Name="InUse" Type="int" Nullable="false" DefaultValue="1" />
         </EntityType>
         <EntityType Name="DEALER">
           <Key>
@@ -29,6 +30,7 @@
           <Property Name="Kosten" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="Kenteken" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="WerkplaatsNr" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WERKPLAATS">
           <Key>
@@ -106,6 +108,7 @@
           <Property Name="DealerNr" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DEALER" Relationship="Self.FK__CAR__DealerNr__25869641" FromRole="CAR" ToRole="DEALER" />
           <NavigationProperty Name="ONDERHOUD" Relationship="Self.FK__ONDERHOUD__Kente__2A4B4B5E" FromRole="CAR" ToRole="ONDERHOUD" />
+          <Property Name="InUse" Type="Int32" Nullable="false" DefaultValue="1"/>
         </EntityType>
         <EntityType Name="DEALER">
           <Key>
@@ -125,6 +128,7 @@
           <Property Name="WerkplaatsNr" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CAR" Relationship="Self.FK__ONDERHOUD__Kente__2A4B4B5E" FromRole="ONDERHOUD" ToRole="CAR" />
           <NavigationProperty Name="WERKPLAATS" Relationship="Self.FK__ONDERHOUD__Werkp__2B3F6F97" FromRole="ONDERHOUD" ToRole="WERKPLAATS" />
+          <Property Name="Paid" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="WERKPLAATS">
           <Key>
@@ -201,6 +205,7 @@
                 <ScalarProperty Name="Merk" ColumnName="Merk" />
                 <ScalarProperty Name="AutoType" ColumnName="AutoType" />
                 <ScalarProperty Name="DealerNr" ColumnName="DealerNr" />
+                <ScalarProperty Name="InUse" ColumnName="InUse" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -219,6 +224,7 @@
                 <ScalarProperty Name="Kosten" ColumnName="Kosten" />
                 <ScalarProperty Name="Kenteken" ColumnName="Kenteken" />
                 <ScalarProperty Name="WerkplaatsNr" ColumnName="WerkplaatsNr" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

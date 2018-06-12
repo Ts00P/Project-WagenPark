@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<Wagenpark.Models.ONDERHOUD>
 
     @{
-        ViewBag.Title = "index";
+        ViewBag.Title = "ROCIT";
         decimal kosten = 0;
     }
 
-    <h2>Kostenoverzicht</h2>
+<div style="height: 30px; width: 100%; display:block; background-color: #343a40; border-radius: 10px;">
+    <h2 style="color: white; padding-left: 10px;">Kostenoverzicht</h2>
+</div>
 
     <table class="table">
         <tr>
@@ -19,7 +21,7 @@
                 Merk
             </th>
             <th>
-                Auto type
+                Autotype
             </th>
             <th>
                 Kosten

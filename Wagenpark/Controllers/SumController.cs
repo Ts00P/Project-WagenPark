@@ -8,6 +8,7 @@ using System.Dynamic;
 
 namespace Wagenpark.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SumController : Controller
     {
         private WagenparkDBEntities db = new WagenparkDBEntities();

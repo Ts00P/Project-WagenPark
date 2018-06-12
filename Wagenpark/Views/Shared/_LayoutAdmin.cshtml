@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Content/Index.css")
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 50px; margin-top: -50px;">
         <a class="navbar-brand" href="#">ROCit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
@@ -22,28 +22,28 @@
                     <a href="@Url.Action("Index", "Home")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("About", "Home")" class="nav-link">About</a>
+                    <a href="@Url.Action("About", "Home")" class="nav-link">Over ons</a>
                 </li>
                 <li class="nav-item">
                     <a href="@Url.Action("Contact", "Home")" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("Index", "DEALER")" class="nav-link">Dealer</a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index", "Sum")" class="nav-link">Overzicht</a>
+                    <a href="@Url.Action("Index", "DEALER")" class="nav-link">Dealers</a>
                 </li>
                 <li class="nav-item">
                     <a href="@Url.Action("Index", "ONDERHOUD")" class="nav-link">Onderhoud</a>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("Index", "WERKPLAATS")" class="nav-link">Werkplaats</a>
+                    <a href="@Url.Action("Index", "WERKPLAATS")" class="nav-link">Werkplaatsen</a>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("Index", "CAR")" class="nav-link">Car's</a>
+                    <a href="@Url.Action("Index", "CAR")" class="nav-link">Auto's</a>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("Index", "Kosten")" class="nav-link">Kosten</a>
+                    <a href="@Url.Action("Index", "Sum")" class="nav-link">Overzicht</a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Kosten")" class="nav-link">Kostenoverzicht</a>
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")
@@ -53,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ROCIT</p>
         </footer>
     </div>
 

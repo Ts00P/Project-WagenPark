@@ -24,7 +24,8 @@ namespace Wagenpark.Models
         public string Merk { get; set; }
         public string AutoType { get; set; }
         public int DealerNr { get; set; }
-    
+        public int InUse { get; set; }
+
         public virtual DEALER DEALER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ONDERHOUD> ONDERHOUD { get; set; }
